@@ -22,7 +22,7 @@ module.exports = function(grunt) {
   };
 
   grunt.registerMultiTask('nice_package', 'Opinionated package.json validator', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
+    // Merge custom validation functions with default ones
     var options = this.options({
       name: is.bind(null, 'String', 'name'),
       version: is.bind(null, 'String', 'version'),
@@ -47,6 +47,13 @@ module.exports = function(grunt) {
     });
 
     if (!every) {
+      return false;
+    }
+
+    // advanced checking
+    if (!check.isString(pkg.license) &&
+      !check.isArray(pkg.licenses)) {
+      grunt.log.error('missing license information');
       return false;
     }
 

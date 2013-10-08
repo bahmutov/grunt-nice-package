@@ -34,7 +34,7 @@ grunt.initConfig({
 
 You can define a validation function for any property of the *package.json*, by default
 the validation will check *name*, *version*, *description*, etc. See
-[nice_package.js]() for details.
+[nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js) for details.
 
 
 ## Small print
