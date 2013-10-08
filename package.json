@@ -39,7 +39,7 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "package", "validator", "npm"
   ],
   "dependencies": {
     "package-json-validator": "~0.5.4",
