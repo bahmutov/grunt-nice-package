@@ -2,10 +2,13 @@
 
 > Opinionated package.json validator
 
-## Getting Started
-This plugin requires Grunt `~0.4.1`
+[![NPM info][nodei.co]](https://npmjs.org/package/grunt-nice-package)
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+[![Build status][ci-image]][ci-url]
+[![dependencies][dependencies-image]][dependencies-url]
+[![endorse][endorse-image]][endorse-url]
+
+## Install
 
 ```shell
 npm install grunt-nice-package --save-dev
@@ -15,75 +18,37 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 
 ```js
 grunt.loadNpmTasks('grunt-nice-package');
-```
-
-## The "nice_package" task
-
-### Overview
-In your project's Gruntfile, add a section named `nice_package` to the data object passed into `grunt.initConfig()`.
-
-```js
 grunt.initConfig({
-  nice_package: {
+  all: {
     options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+      version: function (value) {
+        // strict version number validation
+        return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);
+      }
+    }
   },
 })
 ```
 
-### Options
+## Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+You can define a validation function for any property of the *package.json*, by default
+the validation will check *name*, *version*, *description*, etc. See
+[nice_package.js]() for details.
 
-A string value that is used to do something with whatever.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+## Small print
 
-A string value that is used to do something else with whatever else.
+Author: Gleb Bahmutov &copy; 2013
 
-### Usage Examples
+License: MIT - do anything with the code, but don't blame me if it does not work.
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+Support: if you find any problems with this module, email / tweet / open issue on Github
 
-```js
-grunt.initConfig({
-  nice_package: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  nice_package: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
+[ci-image]: https://travis-ci.org/bahmutov/grunt-nice-package.png?branch=master
+[ci-url]: https://travis-ci.org/bahmutov/grunt-nice-package
+[nodei.co]: https://nodei.co/npm/grunt-nice-package.png?downloads=true
+[dependencies-image]: https://david-dm.org/bahmutov/grunt-nice-package.png
+[dependencies-url]: https://david-dm.org/bahmutov/grunt-nice-package
+[endorse-image]: https://api.coderwall.com/bahmutov/endorsecount.png
+[endorse-url]: https://coderwall.com/bahmutov
