@@ -1,0 +1,43 @@
+{
+  "name": "grunt-nice-package",
+  "description": "Opinionated package.json validator",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bahmutov/grunt-nice-package",
+  "author": {
+    "name": "Gleb Bahmutov",
+    "email": "gleb.bahmutov@gmail.com",
+    "url": "http://glebbahmutov.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahmutov/grunt-nice-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bahmutov/grunt-nice-package/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bahmutov/grunt-nice-package/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
