@@ -8,6 +8,8 @@
 
 'use strict';
 
+var PJV = require('package-json-validator');
+
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
@@ -16,35 +18,35 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('nice_package', 'Opinionated package.json validator', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      // package version is a string
+      version: function (value) {
+        console.log('version', value, 'should be a string');
+        return typeof (value) === 'string';
+      }
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+    var pkg = grunt.file.readJSON('package.json');
 
-      // Handle options.
-      src += options.punctuation;
+    var every = Object.keys(options).every(function (key) {
+      grunt.verbose.writeln('checking property', key);
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+      var property = pkg[key];
+      if (!property) {
+        grunt.log.error('package.json missing', key);
+        return false;
+      }
+      if (typeof options[key] === 'function') {
+        return options[key](property);
+      }
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+      return true;
     });
+
+    if (!every) {
+      return false;
+    }
+
+    return true;
   });
 
 };

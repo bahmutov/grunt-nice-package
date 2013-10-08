@@ -39,5 +39,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "package-json-validator": "~0.5.4"
+  }
 }

@@ -36,6 +36,7 @@ exports.nice_package = {
 
     test.done();
   },
+  /*
   custom_options: function(test) {
     test.expect(1);
 
@@ -45,4 +46,5 @@ exports.nice_package = {
 
     test.done();
   },
+  */
 };
