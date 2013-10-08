@@ -26,16 +26,22 @@ grunt.initConfig({
         return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);
       }
     }
-  },
+  }
 })
 ```
 
 ## Options
 
 You can define a validation function for any property of the *package.json*, by default
-the validation will check *name*, *version*, *description*, etc. See
-[nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js) for details.
+the validation will check:
 
+* name
+* version
+* description
+* license or licenses
+
+For complete list see
+[nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js) for details.
 
 ## Small print
 
