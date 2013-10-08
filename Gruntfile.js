@@ -27,6 +27,17 @@ module.exports = function(grunt) {
       tests: ['tmp'],
     },
 
+    complexity: {
+      all: {
+        src: ['*.js', 'tasks/*.js'],
+        options: {
+          cyclomatic: 5,
+          halstead: 10,
+          maintainability: 100
+        }
+      }
+    },
+
     // Configuration to be run (and then tested).
     nice_package: {
       all: {
@@ -46,12 +57,13 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-complexity');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'nice_package']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['jshint', 'test', 'complexity']);
 
 };
