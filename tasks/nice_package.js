@@ -21,13 +21,15 @@ module.exports = function(grunt) {
     return true;
   };
 
+  var defaultValidators = {
+    name: is.bind(null, 'String', 'name'),
+    version: is.bind(null, 'String', 'version'),
+    description: is.bind(null, 'String', 'description')
+  };
+
   grunt.registerMultiTask('nice_package', 'Opinionated package.json validator', function() {
     // Merge custom validation functions with default ones
-    var options = this.options({
-      name: is.bind(null, 'String', 'name'),
-      version: is.bind(null, 'String', 'version'),
-      description: is.bind(null, 'String', 'description')
-    });
+    var options = this.options(defaultValidators);
 
     var pkg = grunt.file.readJSON('package.json');
 

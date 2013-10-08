@@ -41,7 +41,7 @@ the validation will check:
 * license or licenses
 
 For complete list see
-[nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js) for details.
+[nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js#24) for details.
 
 ## Small print
 
