@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    nice_package: {
+    'nice-package': {
       all: {
         options: {
           version: function (value) {
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'nice_package']);
+  grunt.registerTask('test', ['clean', 'nice-package']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'complexity']);

@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     description: is.bind(null, 'String', 'description')
   };
 
-  grunt.registerMultiTask('nice_package', 'Opinionated package.json validator', function() {
+  grunt.registerMultiTask('nice-package', 'Opinionated package.json validator', function() {
     // Merge custom validation functions with default ones
     var options = this.options(defaultValidators);
 

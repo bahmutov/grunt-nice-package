@@ -19,11 +19,13 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('grunt-nice-package');
 grunt.initConfig({
-  all: {
-    options: {
-      version: function (value) {
-        // strict version number validation
-        return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);
+  'nice-package': {
+    all: {
+      options: {
+        version: function (value) {
+          // strict version number validation
+          return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);
+        }
       }
     }
   }
