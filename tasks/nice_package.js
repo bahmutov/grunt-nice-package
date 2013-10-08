@@ -56,6 +56,7 @@ module.exports = function(grunt) {
       grunt.log.error('missing license information');
       return false;
     }
+    // todo: use package validator
 
     return true;
   });
