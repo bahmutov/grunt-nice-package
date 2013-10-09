@@ -46,6 +46,21 @@ module.exports = function(grunt) {
         return false;
       }
       return true;
+    },
+    repository: function (value) {
+      if (!check.isObject(value)) {
+        grunt.log.error('expected repository to be an object, not', value);
+        return false;
+      }
+      if (!check.isString(value.type)) {
+        grunt.log.error('expected repository type to be a string, not', value.type);
+        return false;
+      }
+      if (!check.isString(value.url)) {
+        grunt.log.error('expected repository url to be a string, not', value.url);
+        return false;
+      }
+      return true;
     }
   };
 
