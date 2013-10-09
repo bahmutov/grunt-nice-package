@@ -1,4 +1,9 @@
 
+0.1.3 / 2013-10-09
+==================
+
+  * added package.json-validator error checking and recommendations
+
 0.1.2 / 2013-10-09
 ==================
 
