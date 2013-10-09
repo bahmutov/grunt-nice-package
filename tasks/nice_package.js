@@ -38,6 +38,14 @@ module.exports = function(grunt) {
         }
         return true;
       });
+    },
+    author: function (value) {
+      if (!check.isObject(value) &&
+        !check.iString(value)) {
+        grunt.log.error('invalid author value', value);
+        return false;
+      }
+      return true;
     }
   };
 
