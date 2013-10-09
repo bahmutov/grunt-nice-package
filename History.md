@@ -1,4 +1,10 @@
 
+0.1.2 / 2013-10-09
+==================
+
+  * added repo basic validation
+  * added keywords validation
+
 0.1.1 / 2013-10-08
 ==================
 
