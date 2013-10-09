@@ -25,12 +25,19 @@ module.exports = function(grunt) {
     name: is.bind(null, 'String', 'name'),
     version: is.bind(null, 'String', 'version'),
     description: is.bind(null, 'String', 'description'),
-    keywords: function (value) {
-      if (!check.isArray(value)) {
+    keywords: function (values) {
+      if (!check.isArray(values)) {
         grunt.log.error('expected keywords to be an Array');
         return false;
       }
-      return true;
+
+      return values.every(function (keyword) {
+        if (!check.isString(keyword)) {
+          grunt.log.error('every keyword should be a string, found', keyword);
+          return false;
+        }
+        return true;
+      });
     }
   };
 
