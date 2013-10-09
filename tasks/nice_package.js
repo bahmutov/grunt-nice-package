@@ -104,7 +104,10 @@ module.exports = function(grunt) {
       grunt.log.error(result.errors);
       return false;
     }
-    grunt.verbose.writeln(result.warnings);
+    if (check.isArray(result.warnings) &&
+      result.warnings.length) {
+      grunt.log.warn(result.warnings);
+    }
 
     return true;
   });
