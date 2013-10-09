@@ -24,7 +24,14 @@ module.exports = function(grunt) {
   var defaultValidators = {
     name: is.bind(null, 'String', 'name'),
     version: is.bind(null, 'String', 'version'),
-    description: is.bind(null, 'String', 'description')
+    description: is.bind(null, 'String', 'description'),
+    keywords: function (value) {
+      if (!check.isArray(value)) {
+        grunt.log.error('expected keywords to be an Array');
+        return false;
+      }
+      return true;
+    }
   };
 
   grunt.registerMultiTask('nice-package', 'Opinionated package.json validator', function() {
@@ -42,7 +49,10 @@ module.exports = function(grunt) {
         return false;
       }
       if (typeof options[key] === 'function') {
-        return options[key](property);
+        if (!options[key](property)) {
+          grunt.log.error('failed check for property', key);
+          return false;
+        }
       }
 
       return true;

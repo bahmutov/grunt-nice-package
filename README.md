@@ -32,6 +32,8 @@ grunt.initConfig({
 })
 ```
 
+Please return `true` if the check passes from custom validation functions.
+
 ## Options
 
 You can define a validation function for any property of the *package.json*, by default
@@ -41,6 +43,7 @@ the validation will check:
 * version
 * description
 * license or licenses
+* keywords (array of strings)
 
 For complete list see
 [nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js#L24) for details.
