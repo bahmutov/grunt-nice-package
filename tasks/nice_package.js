@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     },
     author: function (value) {
       if (!check.isObject(value) &&
-        !check.iString(value)) {
+        !check.isString(value)) {
         grunt.log.error('invalid author value', value);
         return false;
       }
