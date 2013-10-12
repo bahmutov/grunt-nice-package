@@ -34,6 +34,11 @@ grunt.initConfig({
 
 Please return `true` if the check passes from custom validation functions.
 
+After the property validators pass, package.json is further checked using
+[package-json-validator](http://package-json-validator.com/) by Nick Sullivan.
+It will check the required properties, and provide suggestions for
+the recommended ones.
+
 ## Options
 
 You can define a validation function for any property of the *package.json*, by default

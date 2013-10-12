@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       grunt.log.error('missing license information');
       return false;
     }
-    // todo: use package validator
+
     var result = PJV.validate(JSON.stringify(pkg, null, 2));
     if (!result.valid) {
       grunt.log.error(result.errors);
