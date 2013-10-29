@@ -102,12 +102,20 @@ module.exports = function(grunt) {
 
     var result = PJV.validate(JSON.stringify(pkg, null, 2));
     if (!result.valid) {
-      grunt.log.error(result.errors);
-      return false;
+      grunt.log.subhead("Errors:");
+      result.errors.forEach(function (error) {
+        grunt.log.error(error);
+      });
     }
     if (check.array(result.warnings) &&
       result.warnings.length) {
-      grunt.log.warn(result.warnings);
+      grunt.log.subhead("Warnings:");
+      result.warnings.forEach(function (warning) {
+        grunt.log.warn(warning);
+      });
+    }
+    if (!result.valid) {
+      return false;
     }
 
     return true;
