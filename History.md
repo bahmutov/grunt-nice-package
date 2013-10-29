@@ -1,4 +1,13 @@
 
+0.1.4 / 2013-10-29
+==================
+
+  * updated json-validator to latest
+  * updated to check-types@1.1.0
+  * updated dev dependencies
+  * added package-json-validator to readme
+  * fixed syntax error
+
 0.1.3 / 2013-10-09
 ==================
 
