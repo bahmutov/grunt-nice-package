@@ -14,7 +14,7 @@ var check = require('check-types');
 module.exports = function(grunt) {
 
   var is = function (type, name, value) {
-    if (!check['is' + type](value)) {
+    if (!check[type](value)) {
       grunt.log.error('expected', name, 'to be', type, 'not', value);
       return false;
     }
@@ -22,17 +22,18 @@ module.exports = function(grunt) {
   };
 
   var defaultValidators = {
-    name: is.bind(null, 'String', 'name'),
-    version: is.bind(null, 'String', 'version'),
-    description: is.bind(null, 'String', 'description'),
+    name: is.bind(null, 'string', 'name'),
+    version: is.bind(null, 'string', 'version'),
+    description: is.bind(null, 'string', 'description'),
+
     keywords: function (values) {
-      if (!check.isArray(values)) {
+      if (!check.array(values)) {
         grunt.log.error('expected keywords to be an Array');
         return false;
       }
 
       return values.every(function (keyword) {
-        if (!check.isString(keyword)) {
+        if (!check.string(keyword)) {
           grunt.log.error('every keyword should be a string, found', keyword);
           return false;
         }
@@ -40,23 +41,23 @@ module.exports = function(grunt) {
       });
     },
     author: function (value) {
-      if (!check.isObject(value) &&
-        !check.isString(value)) {
+      if (!check.object(value) &&
+        !check.string(value)) {
         grunt.log.error('invalid author value', value);
         return false;
       }
       return true;
     },
     repository: function (value) {
-      if (!check.isObject(value)) {
+      if (!check.object(value)) {
         grunt.log.error('expected repository to be an object, not', value);
         return false;
       }
-      if (!check.isString(value.type)) {
+      if (!check.string(value.type)) {
         grunt.log.error('expected repository type to be a string, not', value.type);
         return false;
       }
-      if (!check.isString(value.url)) {
+      if (!check.string(value.url)) {
         grunt.log.error('expected repository url to be a string, not', value.url);
         return false;
       }
@@ -93,8 +94,8 @@ module.exports = function(grunt) {
     }
 
     // advanced checking
-    if (!check.isString(pkg.license) &&
-      !check.isArray(pkg.licenses)) {
+    if (!check.string(pkg.license) &&
+      !check.array(pkg.licenses)) {
       grunt.log.error('missing license information');
       return false;
     }
@@ -104,7 +105,7 @@ module.exports = function(grunt) {
       grunt.log.error(result.errors);
       return false;
     }
-    if (check.isArray(result.warnings) &&
+    if (check.array(result.warnings) &&
       result.warnings.length) {
       grunt.log.warn(result.warnings);
     }
