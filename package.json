@@ -46,7 +46,7 @@
     "npm"
   ],
   "dependencies": {
-    "package-json-validator": "~0.5.4",
+    "package-json-validator": "~0.5.5",
     "check-types": "~1.1.0"
   }
 }
