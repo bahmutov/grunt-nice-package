@@ -11,6 +11,12 @@
 var PJV = require('package-json-validator').PJV;
 var check = require('check-types');
 
+function unary(fn) {
+  return function (first) {
+    return fn(first);
+  };
+}
+
 module.exports = function(grunt) {
 
   var is = function (type, name, value) {
@@ -103,22 +109,14 @@ module.exports = function(grunt) {
     var result = PJV.validate(JSON.stringify(pkg, null, 2));
     if (!result.valid) {
       grunt.log.subhead("Errors:");
-      result.errors.forEach(function (error) {
-        grunt.log.error(error);
-      });
+      result.errors.forEach(unary(grunt.log.error));
     }
     if (check.array(result.warnings) &&
       result.warnings.length) {
       grunt.log.subhead("Warnings:");
-      result.warnings.forEach(function (warning) {
-        grunt.log.warn(warning);
-      });
+      result.warnings.forEach(unary(grunt.log.warn));
     }
-    if (!result.valid) {
-      return false;
-    }
-
-    return true;
+    return !!result.valid;
   });
 
 };
