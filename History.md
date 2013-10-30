@@ -1,4 +1,10 @@
 
+0.1.5 / 2013-10-30
+==================
+
+  * added Peter deHaan as contributor
+  * Merge pull request #1 from pdehaan/patch-1
+
 0.1.4 / 2013-10-29
 ==================
 
