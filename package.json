@@ -21,7 +21,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/bahmutov/grunt-nice-package/blob/master/LICENSE-MIT"
+      "url": "https://github.com/bahmutov/grunt-nice-package/blob/master/LICENSE"
     }
   ],
   "main": "Gruntfile.js",
