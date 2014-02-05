@@ -108,15 +108,36 @@ module.exports = function(grunt) {
 
     var result = PJV.validate(JSON.stringify(pkg, null, 2));
     if (!result.valid) {
-      grunt.log.subhead("Errors:");
+      grunt.log.subhead('Errors:');
       result.errors.forEach(unary(grunt.log.error));
     }
     if (check.array(result.warnings) &&
       result.warnings.length) {
-      grunt.log.subhead("Warnings:");
+      grunt.log.subhead('Warnings:');
       result.warnings.forEach(unary(grunt.log.warn));
     }
-    return !!result.valid;
+
+    var done = this.async();
+    (function runFixPack() {
+      var join = require('path').join;
+      var fixpack = join(__dirname, '../node_modules/fixpack');
+      var exec = require('child_process').exec;
+
+      exec('node ' + fixpack, function (error, stdout, stderr) {
+        if (error) {
+          grunt.log.error(error);
+          done(false);
+        } else {
+          grunt.log.writeln(stdout);
+          if (stderr) {
+            grunt.log.warn(stderr);
+          }
+          done(!!result.valid);
+        }
+      });
+
+    }());
+
   });
 
 };

@@ -2,22 +2,39 @@
   "name": "grunt-nice-package",
   "description": "Opinionated package.json validator",
   "version": "0.1.5",
-  "homepage": "https://github.com/bahmutov/grunt-nice-package",
   "author": {
     "name": "Gleb Bahmutov",
     "email": "gleb.bahmutov@gmail.com",
     "url": "http://glebbahmutov.com"
   },
-  "contributors": [
-    "Peter deHaan (http://about.me/peterdehaan)"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/bahmutov/grunt-nice-package.git"
-  },
   "bugs": {
     "url": "https://github.com/bahmutov/grunt-nice-package/issues"
   },
+  "contributors": [
+    "Peter deHaan (http://about.me/peterdehaan)"
+  ],
+  "dependencies": {
+    "check-types": "~1.1.1",
+    "package-json-validator": "~0.5.5"
+  },
+  "devDependencies": {
+    "fixpack": "0.0.1",
+    "grunt-complexity": "~0.1.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "jshint-stylish": "~0.1.5",
+    "pre-git": "0.0.14"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "homepage": "https://github.com/bahmutov/grunt-nice-package",
+  "keywords": [
+    "gruntplugin",
+    "package",
+    "validator",
+    "npm"
+  ],
   "licenses": [
     {
       "type": "MIT",
@@ -25,30 +42,15 @@
     }
   ],
   "main": "Gruntfile.js",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "pre-commit": "grunt",
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "pre-git": "0.0.14",
-    "grunt-complexity": "~0.1.3"
-  },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "keywords": [
-    "gruntplugin",
-    "package",
-    "validator",
-    "npm"
-  ],
-  "dependencies": {
-    "package-json-validator": "~0.5.5",
-    "check-types": "~1.1.1"
+  "pre-commit": "grunt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahmutov/grunt-nice-package.git"
+  },
+  "scripts": {
+    "test": "grunt test"
   }
 }
