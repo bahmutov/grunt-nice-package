@@ -1,7 +1,7 @@
 {
   "name": "grunt-nice-package",
   "description": "Opinionated package.json validator",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "author": {
     "name": "Gleb Bahmutov",
     "email": "gleb.bahmutov@gmail.com",
@@ -35,12 +35,7 @@
     "validator",
     "npm"
   ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/bahmutov/grunt-nice-package/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "main": "Gruntfile.js",
   "peerDependencies": {
     "grunt": "~0.4.1"
