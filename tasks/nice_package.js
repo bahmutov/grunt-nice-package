@@ -10,6 +10,8 @@
 
 var PJV = require('package-json-validator').PJV;
 var check = require('check-types');
+var fs = require('fs');
+var join = require('path').join;
 
 function unary(fn) {
   return function (first) {
@@ -74,6 +76,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('nice-package', 'Opinionated package.json validator', function() {
     // Merge custom validation functions with default ones
     var options = this.options(defaultValidators);
+    var blankLine = !!options.blankLine;
+    delete options.blankLine;
 
     var pkg = grunt.file.readJSON('package.json');
 
@@ -119,7 +123,6 @@ module.exports = function(grunt) {
 
     var done = this.async();
     (function runFixPack() {
-      var join = require('path').join;
       var fixpack = join(__dirname, '../node_modules/fixpack');
       var exec = require('child_process').exec;
 
@@ -132,10 +135,17 @@ module.exports = function(grunt) {
           if (stderr) {
             grunt.log.warn(stderr);
           }
+
+          if (blankLine) {
+            var txt = fs.readFileSync('package.json');
+            if (!/\n\n$/.test(txt)) {
+              txt += '\n';
+              fs.writeFileSync('package.json', txt);
+            }
+          }
           done(!!result.valid);
         }
       });
-
     }());
 
   });

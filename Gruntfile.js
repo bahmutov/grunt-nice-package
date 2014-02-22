@@ -43,6 +43,7 @@ module.exports = function(grunt) {
     'nice-package': {
       all: {
         options: {
+          blankLine: true,
           version: function (value) {
             console.log('value should be version', value);
             return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);

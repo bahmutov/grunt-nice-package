@@ -22,6 +22,8 @@ grunt.initConfig({
   'nice-package': {
     all: {
       options: {
+        // make sure package.json ends with \n\n, default false
+        blankLine: true|false,
         version: function (value) {
           // strict version number validation
           return (/\d{1,2}\.\d{1,2}\.\d{1,2}/).test(value);
