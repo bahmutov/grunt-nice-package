@@ -16,7 +16,7 @@
   "dependencies": {
     "check-types": "^1.2.0",
     "fixpack": "0.0.2",
-    "package-json-validator": "~0.5.5"
+    "package-json-validator": "^0.5.6"
   },
   "devDependencies": {
     "grunt-complexity": "^0.1.4",
@@ -49,4 +49,3 @@
     "test": "grunt test"
   }
 }
-
