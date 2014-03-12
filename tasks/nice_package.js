@@ -110,7 +110,9 @@ module.exports = function(grunt) {
       return false;
     }
 
-    var result = PJV.validate(JSON.stringify(pkg, null, 2));
+    var pkgText = JSON.stringify(pkg, null, 2);
+    pkgText = pkgText.replace(/\^/g, '');
+    var result = PJV.validate(pkgText);
     if (!result.valid) {
       grunt.log.subhead('Errors:');
       result.errors.forEach(unary(grunt.log.error));
