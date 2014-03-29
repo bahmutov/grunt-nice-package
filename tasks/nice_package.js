@@ -34,6 +34,19 @@ module.exports = function(grunt) {
     version: is.bind(null, 'string', 'version'),
     description: is.bind(null, 'string', 'description'),
 
+    engines: function (value) {
+      if (typeof value !== 'object') {
+        grunt.log.error('need an object for engines property');
+        return false;
+      }
+      if (!check.string(value.node)) {
+        grunt.log.error('engines object missing node record, has ' +
+          JSON.stringify(value, null, 2));
+        return false;
+      }
+      return true;
+    },
+
     keywords: function (values) {
       if (!check.array(values)) {
         grunt.log.error('expected keywords to be an Array');
