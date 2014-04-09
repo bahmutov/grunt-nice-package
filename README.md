@@ -55,6 +55,11 @@ the validation will check:
 For complete list see
 [nice_package.js](https://github.com/bahmutov/grunt-nice-package/blob/master/tasks/nice_package.js#L24) for details.
 
+## Related projects
+
+* [normalize-pkg](https://github.com/jonschlinkert/normalize-pkg) by
+[@jonschlinkert](https://twitter.com/jonschlinkert)
+
 ## Small print
 
 Author: Gleb Bahmutov &copy; 2013
