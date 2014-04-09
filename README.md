@@ -31,8 +31,20 @@ grunt.initConfig({
       }
     }
   }
-})
+});
 ```
+
+### Alternative: default options
+
+You can load the task with default options without specifying
+the configuration object
+
+```js
+grunt.loadNpmTasks('grunt-nice-package');
+grunt.registerTask('default', ['nice-package']);
+```
+
+### Validator functions
 
 Please return `true` if the check passes from custom validation functions.
 
@@ -59,6 +71,8 @@ For complete list see
 
 * [normalize-pkg](https://github.com/jonschlinkert/normalize-pkg) by
 [@jonschlinkert](https://twitter.com/jonschlinkert)
+* [fixpack](https://github.com/henrikjoreteg/fixpack)
+* [package-json-validator](https://github.com/gorillamania/package.json-validator)
 
 ## Small print
 
