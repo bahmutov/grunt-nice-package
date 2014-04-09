@@ -8,7 +8,7 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
@@ -39,7 +39,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Configuration to be run (and then tested).
     'nice-package': {
       all: {
         options: {
