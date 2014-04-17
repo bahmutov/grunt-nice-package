@@ -97,7 +97,7 @@ function sortPackageProperties(grunt, done, blankLine, valid) {
   var fixpack = join(__dirname, '../node_modules/fixpack');
   var exec = require('child_process').exec;
 
-  exec('node ' + fixpack, function (error, stdout, stderr) {
+  exec('node "' + fixpack + '"', function (error, stdout, stderr) {
     if (error) {
       grunt.log.error(error);
       done(false);
