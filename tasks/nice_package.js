@@ -101,17 +101,21 @@ function tightenVersion(version) {
 // removes ~, ^, etc from dependencies versions
 function tightenVersions(grunt, cb) {
   var pkg = grunt.file.readJSON('package.json');
-  Object.keys(pkg.dependencies).forEach(function (name) {
-    var version = pkg.dependencies[name];
-    version = tightenVersion(version);
-    pkg.dependencies[name] = version;
-  });
+  if (pkg.dependencies) {
+    Object.keys(pkg.dependencies).forEach(function (name) {
+      var version = pkg.dependencies[name];
+      version = tightenVersion(version);
+      pkg.dependencies[name] = version;
+    });
+  }
 
-  Object.keys(pkg.devDependencies).forEach(function (name) {
-    var version = pkg.devDependencies[name];
-    version = tightenVersion(version);
-    pkg.devDependencies[name] = version;
-  });
+  if (pkg.devDependencies) {
+    Object.keys(pkg.devDependencies).forEach(function (name) {
+      var version = pkg.devDependencies[name];
+      version = tightenVersion(version);
+      pkg.devDependencies[name] = version;
+    });
+  }
 
   fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
   cb();
