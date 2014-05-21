@@ -173,6 +173,15 @@ function isValidLicense(pkg) {
     check.array(pkg.licenses);
 }
 
+function printErrors(grunt, result) {
+  if (result &&
+    !result.valid &&
+    check.array(result.errors)) {
+    grunt.log.subhead('Errors:');
+    result.errors.forEach(unary(grunt.log.error));
+  }
+}
+
 function makePackageNicer(grunt, options, done, blankLine) {
   options = options || {};
   verify.fn(done, 'expected done to be a function');
@@ -188,11 +197,10 @@ function makePackageNicer(grunt, options, done, blankLine) {
 
   var pkgText = JSON.stringify(pkg, null, 2);
   pkgText = pkgText.replace(/\^/g, '');
+
   var result = every && PJV.validate(pkgText);
-  if (!result.valid) {
-    grunt.log.subhead('Errors:');
-    result.errors.forEach(unary(grunt.log.error));
-  }
+  printErrors(grunt, result);
+
   if (check.array(result.warnings) &&
     result.warnings.length) {
     grunt.log.subhead('Warnings:');
