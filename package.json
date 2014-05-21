@@ -1,7 +1,7 @@
 {
   "name": "grunt-nice-package",
   "description": "Opinionated package.json validator",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": {
     "name": "Gleb Bahmutov",
     "email": "gleb.bahmutov@gmail.com",
@@ -14,15 +14,15 @@
     "Peter deHaan (http://about.me/peterdehaan)"
   ],
   "dependencies": {
-    "check-types": "^1.2.0",
+    "check-types": "1.2.0",
     "fixpack": "0.0.2",
-    "package-json-validator": "^0.5.6"
+    "package-json-validator": "0.5.6"
   },
   "devDependencies": {
-    "grunt-complexity": "^0.1.4",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.8.0",
-    "jshint-stylish": "~0.1.5",
+    "grunt-complexity": "0.1.4",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-jshint": "0.8.0",
+    "jshint-stylish": "0.1.5",
     "pre-git": "0.0.15"
   },
   "engines": {

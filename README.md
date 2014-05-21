@@ -53,6 +53,18 @@ After the property validators pass, package.json is further checked using
 It will check the required properties, and provide suggestions for
 the recommended ones.
 
+## Tight versions
+
+The fix step in this task removes all fuzzy symbols from declared versions (~, ^),
+leaving just the numbers.
+
+```
+"dependencies": {         "dependencies": {
+  "foo": "^0.1.0",  ==>     "foo": "0.1.0",
+  "bar": "~1.0.0"           "bar": "1.0.0"
+}                         }
+```
+
 ## Options
 
 You can define a validation function for any property of the *package.json*, by default

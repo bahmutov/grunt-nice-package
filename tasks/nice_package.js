@@ -93,6 +93,30 @@ function initValidators(grunt) {
   return validators;
 }
 
+function tightenVersion(version) {
+  verify.unemptyString(version, 'expected version string, got ' + version);
+  return version.replace('^', '').replace('~', '');
+}
+
+// removes ~, ^, etc from dependencies versions
+function tightenVersions(grunt, cb) {
+  var pkg = grunt.file.readJSON('package.json');
+  Object.keys(pkg.dependencies).forEach(function (name) {
+    var version = pkg.dependencies[name];
+    version = tightenVersion(version);
+    pkg.dependencies[name] = version;
+  });
+
+  Object.keys(pkg.devDependencies).forEach(function (name) {
+    var version = pkg.devDependencies[name];
+    version = tightenVersion(version);
+    pkg.devDependencies[name] = version;
+  });
+
+  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+  cb();
+}
+
 function sortPackageProperties(grunt, done, blankLine, valid) {
   var fixpack = join(__dirname, '../node_modules/.bin/fixpack');
   var exec = require('child_process').exec;
@@ -140,6 +164,11 @@ function checkProperties(options, grunt, pkg) {
   return every;
 }
 
+function isValidLicense(pkg) {
+  return check.string(pkg.license) ||
+    check.array(pkg.licenses);
+}
+
 function makePackageNicer(grunt, options, done, blankLine) {
   options = options || {};
   verify.fn(done, 'expected done to be a function');
@@ -148,8 +177,7 @@ function makePackageNicer(grunt, options, done, blankLine) {
   var every = checkProperties(options, grunt, pkg);
 
   // advanced checking
-  if (!check.string(pkg.license) &&
-    !check.array(pkg.licenses)) {
+  if (!isValidLicense(pkg)) {
     grunt.log.error('missing license information');
     return false;
   }
@@ -167,7 +195,9 @@ function makePackageNicer(grunt, options, done, blankLine) {
     result.warnings.forEach(unary(grunt.log.warn));
   }
 
-  sortPackageProperties(grunt, done, blankLine, !!result.valid);
+  tightenVersions(grunt, function () {
+    sortPackageProperties(grunt, done, blankLine, !!result.valid);
+  });
 }
 
 module.exports = function(grunt) {
