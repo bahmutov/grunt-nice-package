@@ -44,6 +44,14 @@ grunt.loadNpmTasks('grunt-nice-package');
 grunt.registerTask('default', ['nice-package']);
 ```
 
+**Note:** you can use *nicePackage* as alias to *nice-package* task name
+
+```js
+ grunt.initConfig({
+   nicePackage: {
+     all: { ...
+```
+
 ### Validator functions
 
 Please return `true` if the check passes from custom validation functions.

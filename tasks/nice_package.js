@@ -255,6 +255,18 @@ module.exports = function(grunt) {
       delete options.blankLine;
       makePackageNicer(grunt, options, this.async(), blankLine);
     });
+  } else if (grunt.config.data.nicePackage) {
+    // try alternative name
+    taskName = 'nicePackage';
+    grunt.verbose.writeln('Using', taskName, 'multi task');
+
+    grunt.registerMultiTask(taskName, taskDescription, function() {
+      // Merge custom validation functions with default ones
+      var options = this.options(defaultValidators);
+      var blankLine = !!options.blankLine;
+      delete options.blankLine;
+      makePackageNicer(grunt, options, this.async(), blankLine);
+    });
   } else {
     grunt.verbose.writeln('Using', taskName, 'task');
 

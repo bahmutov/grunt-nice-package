@@ -1,7 +1,7 @@
 {
-  "name": "grunt-nice-package",
-  "description": "Opinionated package.json validator",
-  "version": "0.8.0",
+  "name": "test-nice-package-name",
+  "description": "test",
+  "version": "0.0.0",
   "author": {
     "name": "Gleb Bahmutov",
     "email": "gleb.bahmutov@gmail.com",
@@ -22,7 +22,6 @@
     "grunt-complexity": "0.2.0",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-jshint": "0.10.0",
-    "gt": "0.8.38",
     "jshint-stylish": "0.2.0",
     "pre-git": "0.0.16",
     "quiet-grunt": "0.2.3"
@@ -48,8 +47,7 @@
     "url": "git://github.com/bahmutov/grunt-nice-package.git"
   },
   "scripts": {
-    "test": "grunt test && npm run e2e",
-    "e2e": "node ./node_modules/gt tests/e2e.js"
+    "test": "grunt test"
   }
 }
 
