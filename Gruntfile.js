@@ -8,6 +8,8 @@
 
 'use strict';
 
+require('quiet-grunt');
+
 module.exports = function (grunt) {
 
   // Project configuration.
