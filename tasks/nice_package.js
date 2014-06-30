@@ -217,12 +217,12 @@ function makePackageNicer(grunt, options, done, blankLine) {
   // advanced checking
   if (!isValidLicense(pkg)) {
     grunt.log.error('missing license information');
-    return false;
+    return done(false);
   }
 
   if (!fs.existsSync('./README.md')) {
     grunt.log.error('missing README.md file');
-    return false;
+    return done(false);
   }
 
   var pkgText = JSON.stringify(pkg, null, 2);
