@@ -42,7 +42,10 @@
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "pre-commit": "grunt",
+  "pre-commit": [
+    "grunt",
+    "npm test"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/bahmutov/grunt-nice-package.git"
