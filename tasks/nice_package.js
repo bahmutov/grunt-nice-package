@@ -220,6 +220,11 @@ function makePackageNicer(grunt, options, done, blankLine) {
     return false;
   }
 
+  if (!fs.existsSync('./README.md')) {
+    grunt.log.error('missing README.md file');
+    return false;
+  }
+
   var pkgText = JSON.stringify(pkg, null, 2);
   pkgText = pkgText.replace(/\^/g, '');
 
