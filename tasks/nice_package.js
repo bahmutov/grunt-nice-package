@@ -104,6 +104,15 @@ function initValidators(grunt) {
   return validators;
 }
 
+function warnOnLooseVersion(grunt, name, version) {
+  verify.unemptyString(name, 'missing name');
+  verify.unemptyString(version, 'missing version for', name);
+
+  if (/\*|\^|\~/.test(version)) {
+    grunt.log.warn('loose version', version, 'for dependency', name);
+  }
+}
+
 function tightenVersion(version) {
   verify.unemptyString(version, 'expected version string, got ' + version);
   return version.replace('^', '').replace('~', '');
@@ -115,6 +124,7 @@ function tightenVersions(grunt, cb) {
   if (pkg.dependencies) {
     Object.keys(pkg.dependencies).forEach(function (name) {
       var version = pkg.dependencies[name];
+      warnOnLooseVersion(grunt, name, version);
       version = tightenVersion(version);
       pkg.dependencies[name] = version;
     });
@@ -123,6 +133,7 @@ function tightenVersions(grunt, cb) {
   if (pkg.devDependencies) {
     Object.keys(pkg.devDependencies).forEach(function (name) {
       var version = pkg.devDependencies[name];
+      warnOnLooseVersion(grunt, name, version);
       version = tightenVersion(version);
       pkg.devDependencies[name] = version;
     });

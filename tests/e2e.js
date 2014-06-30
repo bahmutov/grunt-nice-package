@@ -11,7 +11,6 @@ gt.module('use nice-package name', {
 });
 
 gt.async('nice-package task name', function () {
-  console.log('current dir', process.cwd());
   gt.exec('grunt', ['--no-quiet'], 0, function (stdout) {
     gt.ok(check.unemptyString(stdout), 'missing stdout');
     gt.ok(/running\ grunt/.test(stdout), 'running grunt');
@@ -29,10 +28,27 @@ gt.module('use nicePackage task name', {
 });
 
 gt.async('nicePackage task name', function () {
-  console.log('current dir', process.cwd());
   gt.exec('grunt', ['--no-quiet'], 0, function (stdout) {
     gt.ok(check.unemptyString(stdout), 'missing stdout');
     gt.ok(/running\ grunt/.test(stdout), 'running grunt');
     gt.ok(/version\ 0\.0\.0/.test(stdout), 'checked version');
+  });
+});
+
+gt.module('warn on loose versions', {
+  setup: function () {
+    process.chdir(path.join(__dirname, 'looseVersionWarnings'));
+  },
+  teardown: function () {
+    process.chdir(__dirname);
+  }
+});
+
+gt.async('warn on * in version', function () {
+  gt.exec('grunt', ['--no-quiet'], 0, function (stdout) {
+    gt.ok(check.unemptyString(stdout), 'missing stdout');
+    gt.ok(/running\ grunt/.test(stdout), 'running grunt');
+    gt.ok(/version\ 0\.0\.0/.test(stdout), 'checked version');
+    gt.ok(/loose version/.test(stdout), 'warned about loose version');
   });
 });
