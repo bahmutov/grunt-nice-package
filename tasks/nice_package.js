@@ -23,6 +23,17 @@ function unary(fn) {
   };
 }
 
+function find(array, cb) {
+  var found;
+  array.some(function (item) {
+    if (cb(item)) {
+      found = item;
+      return true;
+    }
+  });
+  return found;
+}
+
 function initValidators(grunt) {
   console.assert(grunt, 'missing grunt object');
 
@@ -121,11 +132,25 @@ function tightenVersions(grunt, cb) {
   cb();
 }
 
+function findFixpack() {
+  var choices = [
+    join(__dirname, '../node_modules/.bin/fixpack'),
+    join(__dirname, '../node_modules/fixpack/fixpack.js')
+  ];
+  return find(choices, fs.existsSync);
+}
+
 function sortPackageProperties(grunt, done, blankLine, valid) {
-  var fixpack = join(__dirname, '../node_modules/.bin/fixpack');
+  var fixpack = findFixpack();
+  if (!check.unemptyString(fixpack)) {
+    grunt.log.warn('Could not find fixpack, skipping ...');
+    done(true);
+    return;
+  }
+
   var exec = require('child_process').exec;
 
-  exec('"' + fixpack + '"', function (error, stdout, stderr) {
+  exec('node "' + fixpack + '"', function (error, stdout, stderr) {
     if (error) {
       grunt.log.error(error);
       done(false);
