@@ -119,24 +119,24 @@ function tightenVersion(version) {
 }
 
 // removes ~, ^, etc from dependencies versions
+function tightenDependenciesVersions(grunt, deps) {
+  console.assert(deps, 'missing deps object');
+  Object.keys(deps).forEach(function (name) {
+    var version = deps[name];
+    warnOnLooseVersion(grunt, name, version);
+    version = tightenVersion(version);
+    deps[name] = version;
+  });
+}
+
 function tightenVersions(grunt, cb) {
   var pkg = grunt.file.readJSON('package.json');
   if (pkg.dependencies) {
-    Object.keys(pkg.dependencies).forEach(function (name) {
-      var version = pkg.dependencies[name];
-      warnOnLooseVersion(grunt, name, version);
-      version = tightenVersion(version);
-      pkg.dependencies[name] = version;
-    });
+    tightenDependenciesVersions(grunt, pkg.dependencies);
   }
 
   if (pkg.devDependencies) {
-    Object.keys(pkg.devDependencies).forEach(function (name) {
-      var version = pkg.devDependencies[name];
-      warnOnLooseVersion(grunt, name, version);
-      version = tightenVersion(version);
-      pkg.devDependencies[name] = version;
-    });
+    tightenDependenciesVersions(grunt, pkg.devDependencies);
   }
 
   fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
