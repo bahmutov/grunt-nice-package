@@ -6,7 +6,7 @@
 
 [![Build status][ci-image]][ci-url]
 [![dependencies][dependencies-image]][dependencies-url]
-[![endorse][endorse-image]][endorse-url]
+[![devdependencies][grunt-nice-package-devdependencies-image] ][grunt-nice-package-devdependencies-url]
 
 ## Install
 
@@ -110,5 +110,7 @@ Support: if you find any problems with this module, email / tweet / open issue o
 [nodei.co]: https://nodei.co/npm/grunt-nice-package.png?downloads=true
 [dependencies-image]: https://david-dm.org/bahmutov/grunt-nice-package.png
 [dependencies-url]: https://david-dm.org/bahmutov/grunt-nice-package
+[grunt-nice-package-devdependencies-image]: https://david-dm.org/bahmutov/grunt-nice-package/dev-status.png
+[grunt-nice-package-devdependencies-url]: https://david-dm.org/bahmutov/grunt-nice-package#info=devDependencies
 [endorse-image]: https://api.coderwall.com/bahmutov/endorsecount.png
 [endorse-url]: https://coderwall.com/bahmutov
