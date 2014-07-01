@@ -139,6 +139,10 @@ function tightenVersions(grunt, cb) {
     tightenDependenciesVersions(grunt, pkg.devDependencies);
   }
 
+  if (pkg.peerDependencies) {
+    tightenDependenciesVersions(grunt, pkg.peerDependencies);
+  }
+
   fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
   cb();
 }
