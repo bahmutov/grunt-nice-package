@@ -39,7 +39,7 @@
   "license": "MIT",
   "main": "Gruntfile.js",
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "0.4.1"
   },
   "pre-commit": "grunt",
   "repository": {
