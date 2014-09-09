@@ -16,6 +16,7 @@ var join = require('path').join;
 var unary = require('./utils').unary;
 var find = require('./utils').find;
 var initValidators = require('./validators');
+var save = fs.writeFileSync;
 
 var taskName = 'nice-package';
 var taskDescription = 'Opinionated package.json validator';
@@ -59,7 +60,7 @@ function tightenVersions(grunt, cb) {
     tightenDependenciesVersions(grunt, pkg.peerDependencies);
   }
 
-  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+  save('package.json', JSON.stringify(pkg, null, 2), 'utf8');
   cb();
 }
 
@@ -96,7 +97,7 @@ function sortPackageProperties(grunt, done, options, valid) {
         var txt = fs.readFileSync('package.json');
         if (!/\n\n$/.test(txt)) {
           txt += '\n';
-          fs.writeFileSync('package.json', txt);
+          save('package.json', txt, 'utf8');
         }
       }
       done(valid);
