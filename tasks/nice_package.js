@@ -13,96 +13,12 @@ var check = require('check-types');
 var verify = check.verify;
 var fs = require('fs');
 var join = require('path').join;
+var unary = require('./utils').unary;
+var find = require('./utils').find;
+var initValidators = require('./validators');
 
 var taskName = 'nice-package';
 var taskDescription = 'Opinionated package.json validator';
-
-function unary(fn) {
-  return function (first) {
-    return fn(first);
-  };
-}
-
-function find(array, cb) {
-  var found;
-  array.some(function (item) {
-    if (cb(item)) {
-      found = item;
-      return true;
-    }
-  });
-  return found;
-}
-
-function initValidators(grunt) {
-  console.assert(grunt, 'missing grunt object');
-
-  var is = function (type, name, value) {
-    if (!check[type](value)) {
-      grunt.log.error('expected', name, 'to be', type, 'not', value);
-      return false;
-    }
-    return true;
-  };
-
-  var validators = {
-    name: is.bind(null, 'string', 'name'),
-    version: is.bind(null, 'string', 'version'),
-    description: is.bind(null, 'string', 'description'),
-
-    engines: function (value) {
-      if (typeof value !== 'object') {
-        grunt.log.error('need an object for engines property');
-        return false;
-      }
-      if (!check.string(value.node)) {
-        grunt.log.error('engines object missing node record, has ' +
-          JSON.stringify(value, null, 2));
-        return false;
-      }
-      return true;
-    },
-
-    keywords: function (values) {
-      if (!check.array(values)) {
-        grunt.log.error('expected keywords to be an Array');
-        return false;
-      }
-
-      return values.every(function (keyword) {
-        if (!check.string(keyword)) {
-          grunt.log.error('every keyword should be a string, found', keyword);
-          return false;
-        }
-        return true;
-      });
-    },
-    author: function (value) {
-      if (!check.object(value) &&
-        !check.string(value)) {
-        grunt.log.error('invalid author value', value);
-        return false;
-      }
-      return true;
-    },
-    repository: function (value) {
-      if (!check.object(value)) {
-        grunt.log.error('expected repository to be an object, not', value);
-        return false;
-      }
-      if (!check.string(value.type)) {
-        grunt.log.error('expected repository type to be a string, not', value.type);
-        return false;
-      }
-      if (!check.string(value.url)) {
-        grunt.log.error('expected repository url to be a string, not', value.url);
-        return false;
-      }
-      return true;
-    }
-  };
-  return validators;
-}
 
 function warnOnLooseVersion(grunt, name, version) {
   verify.unemptyString(name, 'missing name');
@@ -257,33 +173,35 @@ function makePackageNicer(grunt, options, done, blankLine) {
   });
 }
 
+function registerUnderTaskName(name, grunt, defaultValidators) {
+  verify.unemptyString(name, 'expected name');
+  grunt.verbose.writeln('Using', name, 'multi task');
+
+  grunt.registerMultiTask(name, taskDescription, function() {
+    // Merge custom validation functions with default ones
+    var options = this.options(defaultValidators);
+    var blankLine = !!options.blankLine;
+    delete options.blankLine;
+    makePackageNicer(grunt, options, this.async(), blankLine);
+  });
+}
+
 module.exports = function(grunt) {
   var defaultValidators = initValidators(grunt);
 
+  var found;
   if (grunt.config.data[taskName]) {
-    grunt.verbose.writeln('Using', taskName, 'multi task');
+    found = true;
+    registerUnderTaskName(taskName, grunt, defaultValidators);
+  }
 
-    grunt.registerMultiTask(taskName, taskDescription, function() {
-      // Merge custom validation functions with default ones
-      var options = this.options(defaultValidators);
-      var blankLine = !!options.blankLine;
-      delete options.blankLine;
-      makePackageNicer(grunt, options, this.async(), blankLine);
-    });
-  } else if (grunt.config.data.nicePackage) {
-    // try alternative name
-    taskName = 'nicePackage';
-    grunt.verbose.writeln('Using', taskName, 'multi task');
+  if (grunt.config.data.nicePackage) {
+    found = true;
+    registerUnderTaskName('nicePackage', grunt, defaultValidators);
+  }
 
-    grunt.registerMultiTask(taskName, taskDescription, function() {
-      // Merge custom validation functions with default ones
-      var options = this.options(defaultValidators);
-      var blankLine = !!options.blankLine;
-      delete options.blankLine;
-      makePackageNicer(grunt, options, this.async(), blankLine);
-    });
-  } else {
-    grunt.verbose.writeln('Using', taskName, 'task');
+  if (!found) {
+    grunt.verbose.writeln('Using default', taskName, 'task');
 
     grunt.registerTask(taskName, taskDescription, function () {
       makePackageNicer(grunt, defaultValidators, this.async());
