@@ -17,6 +17,7 @@ var unary = require('./utils').unary;
 var find = require('./utils').find;
 var initValidators = require('./validators');
 var save = fs.writeFileSync;
+var load = fs.readFileSync;
 
 var taskName = 'nice-package';
 var taskDescription = 'Opinionated package.json validator';
@@ -94,7 +95,7 @@ function sortPackageProperties(grunt, done, options, valid) {
       }
 
       if (options.blankLine) {
-        var txt = fs.readFileSync('package.json');
+        var txt = load('package.json', 'utf8');
         if (!/\n\n$/.test(txt)) {
           txt += '\n';
           save('package.json', txt, 'utf8');
