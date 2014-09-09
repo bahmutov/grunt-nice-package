@@ -71,7 +71,8 @@ function findFixpack() {
   return find(choices, fs.existsSync);
 }
 
-function sortPackageProperties(grunt, done, blankLine, valid) {
+function sortPackageProperties(grunt, done, options, valid) {
+  options = options || {};
   var fixpack = findFixpack();
   if (!check.unemptyString(fixpack)) {
     grunt.log.warn('Could not find fixpack, skipping ...');
@@ -91,7 +92,7 @@ function sortPackageProperties(grunt, done, blankLine, valid) {
         grunt.log.warn(stderr);
       }
 
-      if (blankLine) {
+      if (options.blankLine) {
         var txt = fs.readFileSync('package.json');
         if (!/\n\n$/.test(txt)) {
           txt += '\n';
@@ -138,12 +139,13 @@ function printErrors(grunt, result) {
   }
 }
 
-function makePackageNicer(grunt, options, done, blankLine) {
+function makePackageNicer(grunt, validators, done, options) {
+  validators = validators || {};
   options = options || {};
   verify.fn(done, 'expected done to be a function');
 
   var pkg = grunt.file.readJSON('package.json');
-  var every = checkProperties(options, grunt, pkg);
+  var every = checkProperties(validators, grunt, pkg);
 
   // advanced checking
   if (!isValidLicense(pkg)) {
@@ -169,7 +171,7 @@ function makePackageNicer(grunt, options, done, blankLine) {
   }
 
   tightenVersions(grunt, function () {
-    sortPackageProperties(grunt, done, blankLine, !!result.valid);
+    sortPackageProperties(grunt, done, options.blankLine, !!result.valid);
   });
 }
 
@@ -179,10 +181,18 @@ function registerUnderTaskName(name, grunt, defaultValidators) {
 
   grunt.registerMultiTask(name, taskDescription, function() {
     // Merge custom validation functions with default ones
+    defaultValidators.fix = true;
     var options = this.options(defaultValidators);
-    var blankLine = !!options.blankLine;
+    var blankLine = Boolean(options.blankLine);
     delete options.blankLine;
-    makePackageNicer(grunt, options, this.async(), blankLine);
+    var fix = Boolean(options.fix);
+    delete options.fix;
+
+    var extraOptions = {
+      blankLine: blankLine,
+      fix: fix
+    };
+    makePackageNicer(grunt, options, this.async(), extraOptions);
   });
 }
 

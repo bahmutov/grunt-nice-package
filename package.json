@@ -55,4 +55,3 @@
     "e2e": "node ./node_modules/gt tests/e2e.js"
   }
 }
-
