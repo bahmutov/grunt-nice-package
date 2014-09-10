@@ -1,5 +1,16 @@
 var path = require('path');
 var check = require('check-types');
+var glob = require('glob');
+
+gt.module('glob.sync');
+
+gt.test('getting all js files in the current folder', function () {
+  var files = glob.sync(__dirname + '/*.js');
+  gt.ok(files.length > 0, 'grabbed files');
+  // console.log('current file', __filename);
+  gt.ok(files.indexOf(__filename) !== -1,
+    'list of js files has current file');
+});
 
 gt.module('use nice-package name', {
   setup: function () {
@@ -51,4 +62,17 @@ gt.async('warn on * in version', function () {
     gt.ok(/version\ 0\.0\.0/.test(stdout), 'checked version');
     gt.ok(/loose version/.test(stdout), 'warned about loose version');
   });
+});
+
+gt.module('readme filename', {
+  setup: function () {
+    process.chdir(path.join(__dirname, 'readme'));
+  },
+  teardown: function () {
+    process.chdir(__dirname);
+  }
+});
+
+gt.async('readme filename', function () {
+  gt.exec('grunt', ['--no-quiet'], 0);
 });

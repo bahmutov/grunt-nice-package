@@ -18,6 +18,7 @@ var find = require('./utils').find;
 var initValidators = require('./validators');
 var save = fs.writeFileSync;
 var load = fs.readFileSync;
+var glob = require('glob');
 
 var taskName = 'nice-package';
 var taskDescription = 'Opinionated package.json validator';
@@ -141,6 +142,30 @@ function printErrors(grunt, result) {
   }
 }
 
+function getReadmeFiles() {
+  var fileMatchOptions = {
+    nocase: true
+  };
+  var readmes = glob.sync(process.cwd() + '/readme.md', fileMatchOptions)
+    .concat(glob.sync(process.cwd() + '/readme', fileMatchOptions));
+  return readmes;
+}
+
+function checkLicenseAndReadm(grunt) {
+  var pkg = grunt.file.readJSON('package.json');
+  if (!isValidLicense(pkg)) {
+    grunt.log.error('missing license information');
+    return false;
+  }
+
+  var readmes = getReadmeFiles();
+  if (!readmes.length) {
+    grunt.log.error('missing README.md file');
+    return false;
+  }
+  return true;
+}
+
 function makePackageNicer(grunt, validators, done, options) {
   validators = validators || {};
   options = options || {};
@@ -150,13 +175,7 @@ function makePackageNicer(grunt, validators, done, options) {
   var every = checkProperties(validators, grunt, pkg);
 
   // advanced checking
-  if (!isValidLicense(pkg)) {
-    grunt.log.error('missing license information');
-    return done(false);
-  }
-
-  if (!fs.existsSync('./README.md')) {
-    grunt.log.error('missing README.md file');
+  if (!checkLicenseAndReadm(grunt)) {
     return done(false);
   }
 
