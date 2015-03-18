@@ -49,7 +49,9 @@ grunt.registerTask('default', ['nice-package']);
 ```js
  grunt.initConfig({
    nicePackage: {
-     all: { ...
+     all: { ... }
+   }
+  });
 ```
 
 ### Validator functions
@@ -94,10 +96,16 @@ For complete list see
 * [fixpack](https://github.com/henrikjoreteg/fixpack)
 * [package-json-validator](https://github.com/gorillamania/package.json-validator)
 
+You can easily run this grunt task from gulp, 
+see [Using grunt tasks from gulp](http://glebbahmutov.com/blog/using-grunt-tasks-from-gulp/)
+
 ## Small print
 
 Author: Gleb Bahmutov &copy; 2013
-[@bahmutov](https://twitter.com/bahmutov) [glebbahmutov.com](http://glebbahmutov.com)
+
+* [@bahmutov](https://twitter.com/bahmutov) 
+* [glebbahmutov.com](http://glebbahmutov.com)
+* [blog](http://glebbahmutov.com/blog)
 
 License: MIT - do anything with the code, but don't blame me if it does not work.
 
