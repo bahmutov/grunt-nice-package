@@ -48,6 +48,7 @@
     "npm run grunt",
     "npm test"
   ],
+  "post-commit": "npm version",
   "repository": {
     "type": "git",
     "url": "git://github.com/bahmutov/grunt-nice-package.git"
