@@ -44,11 +44,11 @@
   "peerDependencies": {
     "grunt": "0.4.5"
   },
+  "post-commit": "npm version",
   "pre-commit": [
     "npm run grunt",
     "npm test"
   ],
-  "post-commit": "npm version",
   "repository": {
     "type": "git",
     "url": "git://github.com/bahmutov/grunt-nice-package.git"
