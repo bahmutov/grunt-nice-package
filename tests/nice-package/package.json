@@ -32,9 +32,9 @@
   "homepage": "https://github.com/bahmutov/grunt-nice-package",
   "keywords": [
     "gruntplugin",
+    "npm",
     "package",
-    "validator",
-    "npm"
+    "validator"
   ],
   "license": "MIT",
   "main": "Gruntfile.js",
