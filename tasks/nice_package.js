@@ -146,8 +146,10 @@ function getReadmeFiles() {
   var fileMatchOptions = {
     nocase: true
   };
-  var readmes = glob.sync(process.cwd() + '/readme.md', fileMatchOptions)
-    .concat(glob.sync(process.cwd() + '/readme', fileMatchOptions));
+  var readmeMd = join(process.cwd(), 'readme.md');
+  var readme = join(process.cwd(), 'readme');
+  var readmes = glob.sync(readmeMd, fileMatchOptions)
+    .concat(glob.sync(readme, fileMatchOptions));
   return readmes;
 }
 
