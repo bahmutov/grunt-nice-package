@@ -8,6 +8,10 @@
 [![dependencies][dependencies-image]][dependencies-url]
 [![devdependencies][grunt-nice-package-devdependencies-image] ][grunt-nice-package-devdependencies-url]
 
+You can read the description of each package.json property [here](https://docs.npmjs.com/files/package.json).
+Example package.json that passes all checks (because it is using this module!) is 
+[kensho/ng-describe/package.json](https://github.com/kensho/ng-describe/blob/master/package.json).
+
 ## Install
 
 ```shell
