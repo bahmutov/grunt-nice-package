@@ -9,8 +9,8 @@
 [![devdependencies][grunt-nice-package-devdependencies-image] ][grunt-nice-package-devdependencies-url]
 
 You can read the description of each package.json property [here](https://docs.npmjs.com/files/package.json).
-Example package.json that passes all checks (because it is using this module!) is 
-[kensho/ng-describe/package.json](https://github.com/kensho/ng-describe/blob/master/package.json).
+Example package.json that passes all checks (because it is using this module!) 
+is [kensho/ng-describe/package.json](https://github.com/kensho/ng-describe/blob/master/package.json).
 
 ## Install
 
@@ -56,6 +56,22 @@ grunt.registerTask('default', ['nice-package']);
      all: { ... }
    }
   });
+```
+
+### Install without Grunt
+
+If you don't want to use grunt, but still need this project, run it via [grunty](https://github.com/bahmutov/grunty)
+
+    npm install -D grunt-nice-package grunty
+
+Then add the following to the scripts section
+
+```json
+{
+  "scripts": {
+    "nice": "grunty grunt-nice-package nice-package"
+  }
+}
 ```
 
 ### Validator functions
