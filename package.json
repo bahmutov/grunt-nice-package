@@ -32,6 +32,9 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "files": [
+    "tasks"
+  ],
   "homepage": "https://github.com/bahmutov/grunt-nice-package",
   "keywords": [
     "gruntplugin",
@@ -56,10 +59,7 @@
   "scripts": {
     "e2e": "node ./node_modules/gt tests/e2e.js",
     "grunt": "grunt",
-    "test": "grunt test && npm run e2e",
-    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
-  },
-  "files": [
-    "tasks"
-  ]
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
+    "test": "grunt test && npm run e2e"
+  }
 }
