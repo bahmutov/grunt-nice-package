@@ -67,9 +67,14 @@ function tightenVersions(grunt, cb) {
 }
 
 function findFixpack() {
+  var cwd = process.cwd();
   var choices = [
-    join(__dirname, '../node_modules/.bin/fixpack'),
-    join(__dirname, '../node_modules/fixpack/fixpack.js')
+    join(cwd, 'fixpack/bin/fixpack'),
+    join(cwd, 'node_modules/fixpack/bin/fixpack'),
+    join(cwd, '../fixpack/bin/fixpack'),
+    join(cwd, '../.bin/fixpack'),
+    join(cwd, '../node_modules/.bin/fixpack'),
+    join(cwd, '../node_modules/fixpack/fixpack.js')
   ];
   return find(choices, fs.existsSync);
 }
