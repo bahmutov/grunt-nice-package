@@ -34,11 +34,11 @@
     "grunt-complexity": "0.3.0",
     "grunt-contrib-clean": "0.7.0",
     "grunt-contrib-jshint": "0.11.3",
-    "gt": "0.8.48",
+    "gt": "0.9.1",
     "jshint-stylish": "2.1.0",
     "pre-git": "1.4.0",
     "quiet-grunt": "0.2.3",
-    "semantic-release": "4.3.5"
+    "semantic-release": "6.0.3"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -69,7 +69,7 @@
   },
   "scripts": {
     "commit": "commit-wizard",
-    "e2e": "node ./node_modules/gt tests/e2e.js",
+    "e2e": "gt tests/e2e.js",
     "grunt": "grunt",
     "issues": "git-issues",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
