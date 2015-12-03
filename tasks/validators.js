@@ -1,4 +1,4 @@
-var check = require('check-types');
+var check = require('check-more-types');
 
 function initValidators(grunt) {
   console.assert(grunt, 'missing grunt object');

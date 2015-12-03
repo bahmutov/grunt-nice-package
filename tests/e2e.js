@@ -1,5 +1,5 @@
 var path = require('path');
-var check = require('check-types');
+var check = require('check-more-types');
 var glob = require('glob');
 
 gt.module('glob.sync');

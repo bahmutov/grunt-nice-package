@@ -12,3 +12,4 @@ lib-cov
 pids
 logs
 results
+tests/.DS_Store

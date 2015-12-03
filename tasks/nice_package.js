@@ -9,7 +9,7 @@
 'use strict';
 
 var PJV = require('package-json-validator').PJV;
-var check = require('check-types');
+var check = require('check-more-types');
 var verify = check.verify;
 var fs = require('fs');
 var join = require('path').join;
