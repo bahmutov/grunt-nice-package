@@ -7,9 +7,10 @@
 [![Build status][ci-image]][ci-url]
 [![dependencies][dependencies-image]][dependencies-url]
 [![devdependencies][grunt-nice-package-devdependencies-image] ][grunt-nice-package-devdependencies-url]
+[![semantic-release][semantic-image] ][semantic-url]
 
 You can read the description of each package.json property [here](https://docs.npmjs.com/files/package.json).
-Example package.json that passes all checks (because it is using this module!) 
+Example package.json that passes all checks (because it is using this module!)
 is [kensho/ng-describe/package.json](https://github.com/kensho/ng-describe/blob/master/package.json).
 
 ## Install
@@ -116,14 +117,14 @@ For complete list see
 * [fixpack](https://github.com/henrikjoreteg/fixpack)
 * [package-json-validator](https://github.com/gorillamania/package.json-validator)
 
-You can easily run this grunt task from gulp, 
+You can easily run this grunt task from gulp,
 see [Using grunt tasks from gulp](http://glebbahmutov.com/blog/using-grunt-tasks-from-gulp/)
 
 ## Small print
 
 Author: Gleb Bahmutov &copy; 2013
 
-* [@bahmutov](https://twitter.com/bahmutov) 
+* [@bahmutov](https://twitter.com/bahmutov)
 * [glebbahmutov.com](http://glebbahmutov.com)
 * [blog](http://glebbahmutov.com/blog)
 
@@ -142,3 +143,5 @@ Support: if you find any problems with this module, email / tweet / open issue o
 [grunt-nice-package-devdependencies-url]: https://david-dm.org/bahmutov/grunt-nice-package#info=devDependencies
 [endorse-image]: https://api.coderwall.com/bahmutov/endorsecount.png
 [endorse-url]: https://coderwall.com/bahmutov
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release

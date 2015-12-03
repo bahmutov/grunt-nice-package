@@ -1,7 +1,7 @@
 {
   "name": "grunt-nice-package",
   "description": "Opinionated package.json validator",
-  "version": "0.9.6",
+  "version": "0.0.0-semantic-release",
   "author": {
     "name": "Gleb Bahmutov",
     "email": "gleb.bahmutov@gmail.com",
@@ -36,7 +36,8 @@
     "gt": "0.8.48",
     "jshint-stylish": "2.1.0",
     "pre-git": "1.4.0",
-    "quiet-grunt": "0.2.3"
+    "quiet-grunt": "0.2.3",
+    "semantic-release": "4.3.5"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -63,12 +64,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/bahmutov/grunt-nice-package.git"
+    "url": "https://github.com/bahmutov/grunt-nice-package.git"
   },
   "scripts": {
     "commit": "commit-wizard",
     "e2e": "node ./node_modules/gt tests/e2e.js",
     "grunt": "grunt",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "grunt test && npm run e2e"
   }
