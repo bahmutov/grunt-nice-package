@@ -71,10 +71,12 @@ function findFixpack() {
   var choices = [
     join(cwd, 'fixpack/bin/fixpack'),
     join(cwd, 'node_modules/fixpack/bin/fixpack'),
-    join(cwd, '../fixpack/bin/fixpack'),
-    join(cwd, '../.bin/fixpack'),
-    join(cwd, '../node_modules/.bin/fixpack'),
-    join(cwd, '../node_modules/fixpack/fixpack.js')
+    join(cwd, 'node_modules/fixpack/bin/fixpack'),
+    join(__dirname, '../fixpack/bin/fixpack'),
+    join(__dirname, '../.bin/fixpack'),
+    join(__dirname, '../node_modules/.bin/fixpack'),
+    join(__dirname, '../node_modules/fixpack/bin/fixpack'),
+    join(__dirname, '../node_modules/fixpack/fixpack.js')
   ];
   return find(choices, fs.existsSync);
 }
