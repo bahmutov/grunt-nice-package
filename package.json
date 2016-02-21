@@ -56,7 +56,7 @@
   "license": "MIT",
   "main": "Gruntfile.js",
   "peerDependencies": {
-    "grunt": "0.4.5"
+    "grunt": ">=0.4.0"
   },
   "post-commit": "npm version",
   "pre-commit": [
