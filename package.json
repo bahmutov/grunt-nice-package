@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "git-issues": "1.2.0",
+    "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
     "grunt-complexity": "0.3.0",
     "grunt-contrib-clean": "0.7.0",
