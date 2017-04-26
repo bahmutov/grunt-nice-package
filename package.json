@@ -26,11 +26,11 @@
     "check-more-types": "2.3.0",
     "fixpack": "2.2.0",
     "glob": "6.0.1",
-    "package-json-validator": "git+https://github.com/hemanth/package.json-validator.git#0f3d9ca5576cc1dc2e47b2321a6bbf2febb3ae48"
+    "package-json-validator": "0.6.1"
   },
   "devDependencies": {
     "git-issues": "1.2.0",
-    "grunt-cli": "0.1.13",
+    "grunt-cli": "1.2.0",
     "grunt-complexity": "0.3.0",
     "grunt-contrib-clean": "0.7.0",
     "grunt-contrib-jshint": "0.11.3",

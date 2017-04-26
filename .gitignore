@@ -13,3 +13,4 @@ pids
 logs
 results
 tests/.DS_Store
+.idea
