@@ -30,11 +30,12 @@
   },
   "devDependencies": {
     "git-issues": "1.2.0",
+    "grunt": "1.0.1"
     "grunt-cli": "1.2.0",
     "grunt-complexity": "0.3.0",
     "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-jshint": "1.1.0",
-    "gt": "0.9.1",
+    "gt": "0.10.0",
     "jshint-stylish": "2.1.0",
     "pre-git": "1.4.0",
     "semantic-release": "6.0.3"
