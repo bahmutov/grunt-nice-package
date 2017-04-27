@@ -30,15 +30,14 @@
   },
   "devDependencies": {
     "git-issues": "1.2.0",
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
+    "grunt": "1.0.1",
+    "grunt-cli": "1.2.0",
     "grunt-complexity": "0.3.0",
-    "grunt-contrib-clean": "0.7.0",
-    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-clean": "1.1.0",
+    "grunt-contrib-jshint": "1.1.0",
     "gt": "0.10.0",
     "jshint-stylish": "2.1.0",
     "pre-git": "1.4.0",
-    "quiet-grunt": "0.2.3",
     "semantic-release": "6.0.3"
   },
   "engines": {
@@ -57,11 +56,11 @@
   "license": "MIT",
   "main": "Gruntfile.js",
   "peerDependencies": {
-    "grunt": "0.4.5"
+    "grunt": ">=0.4.0"
   },
   "post-commit": "npm version",
   "pre-commit": [
-    "npm run grunt",
+    "grunt",
     "npm test"
   ],
   "repository": {
